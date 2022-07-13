@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: cloudalibaba-gateway9999
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+    gateway:
+      routes:                   # 这个也可配置多个
+        - id: cloudalibaba-nacos9001-producer         # 一般是使用调用的application Name 名
+          uri: lb://cloudalibaba-nacos9001-producer   # 启动手动配置负载均衡 lb 使用gateway的负载模式
+          predicates:
+            - Path=/getaway/**                        # 断言， 相当于对那个路径进行匹配， 如果没有加则无效， 可配置多个
+          filters:
+            - StripPrefix=1       # 去掉地址中的第一部分     http://localhost:9999/getaway/content/getaway/get
+#            - After=2022-07-11T23:44:18.207+08:00[Asia/Shanghai]  # 断言相当与在值之后的请求可通过 - Before 在次之前请求可通过 - Between 在此之间的请求可哦通过
+#            - Cookie=username,[a-z]+                  # 配置cookie的key跟value value是正则表达式，符合条件则通过
+#            - Header=X-Request-Id,\d+                 # 匹配header数据比如有这个key， 而且这个key必须是数字
+#            - Host=***.xckk.com                       # 匹配当前的主机地址发出的请求
+#            - Method=GET, POST                        # 匹配请求方式
+#            - Query=id,.+                             # 匹配请求参数
+#            - Weight=group1, 2                        # 分流
+#      routes:
+#        - id: cloudalibaba-nacos9001-producer        # 路由id 保证唯一
+#          uri: http://localhost:9001/cloudalibaba-nacos9001-producer # 匹配路由服务的路由地址
+#          predicates: # 断言
+#            - Path=/getaway/** # 断言 路径匹配进行路由； 否则无效
+#      discovery:
+#        locator:
+#          enabled: true  #开启自动路由功能(此时可以关闭)
+feign:
+  sentinel:
+    enabled: true
+server:
+  port: 9999

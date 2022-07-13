@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_at?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: root
+    password: 19981122
+    type: com.alibaba.druid.pool.DruidDataSource
+
+seata:
+  service:
+    vgroup-mapping:
+      mygroup: default  # key是事务组名称 value要和服务端的机房名称保持一致
+  tx-service-group: mygroup  # 事务组名称，要和服务端对应

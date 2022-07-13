@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+  profiles:
+    active: dev

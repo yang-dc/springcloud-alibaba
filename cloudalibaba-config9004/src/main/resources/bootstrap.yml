@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        group: DEFAULT_GROUP
+        namespace: ff0c79d5-fd6a-4a31-9094-7a690a42d29f
+  profiles:
+    active: dev
+    #active: info
