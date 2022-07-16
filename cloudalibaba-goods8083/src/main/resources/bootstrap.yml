@@ -19,4 +19,11 @@ seata:
   tx-service-group: mygroup  # 事务组名称，要和服务端对应
 
 mybatis:
-  mapper-locations: classpath:com.xckk.cloudalibabaorder8082.mapper/*.xml
+  mapper-locations: classpath:com.xckk.cloudalibabagoods8083.mapper/*.xml
+
+server:
+  order-serviceName: cloudalibaba-order8082
+
+feign:
+  sentinel:
+    enabled: true
